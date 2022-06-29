@@ -148,4 +148,21 @@ class UserController extends Controller
         }
         return false;
     }
+
+    public function ChangePassword(Request $request)
+    {
+        if ($this->isAdmin()) {
+
+            $user = User::find($request->id);
+            if (!$user) {
+                return redirect('/home');
+            }
+            return view('admin.users.changepassword', compact('user'));
+        } else {
+            $user = auth()->user();
+            return view('admin.users.changepassword', compact('user'));
+        }
+
+        return redirect('/home');
+    }
 }

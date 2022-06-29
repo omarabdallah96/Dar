@@ -82,6 +82,12 @@
                         المستخدمين
                     </span>
                 </a>
+                <a href="{{ route('users.password') }}">
+                    <i class="fas fa-key"></i>
+                    <span>
+                        تغيير كلمة المرور
+                    </span>
+                </a>
                 <a href="/logout">
                     <i class="fas fa-sign-out-alt"></i>
                     <span>
@@ -92,7 +98,7 @@
             </div>
 
 
-            <span  style="font-size:30px;cursor:pointer " onclick="openNav()">
+            <span style="font-size:30px;cursor:pointer " onclick="openNav()">
                 <i class="ml-3 fas fa-bars"></i>
             </span>
 

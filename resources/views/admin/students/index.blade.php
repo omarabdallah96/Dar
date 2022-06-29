@@ -59,7 +59,7 @@
                 <a href="{{route('students.edit', $student->id)}}" class="btn btn-warning">
                     <i class="fas fa-edit"></i>
                 </a>
-               
+
             </td>
         </tr>
         @empty
