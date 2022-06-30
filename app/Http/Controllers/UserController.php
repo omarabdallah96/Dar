@@ -151,18 +151,26 @@ class UserController extends Controller
 
     public function ChangePassword(Request $request)
     {
-        if ($this->isAdmin()) {
 
-            $user = User::find($request->id);
-            if (!$user) {
-                return redirect('/home');
-            }
-            return view('admin.users.changepassword', compact('user'));
-        } else {
-            $user = auth()->user();
-            return view('admin.users.changepassword', compact('user'));
+        $user = auth()->user();
+        if (!$user) {
+            return redirect('/home');
         }
+        return view('admin.users.changePassword', compact('user'));
+    }
 
+    public function UpdatePassword(Request $request)
+    {
+        $user = auth()->user();
+        if (!$user) {
+            return redirect('/home');
+        }
+        $this->validate($request, [
+            'password' => 'required|string|min:6',
+            'password_confirmation' => 'required|string|min:6|same:password',
+        ]);
+        $user->password = bcrypt($request->password);
+        $user->save();
         return redirect('/home');
     }
 }

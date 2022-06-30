@@ -33,6 +33,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('/users/{user}', [App\Http\Controllers\UserController::class, 'update'])->name('users.update');
     Route::delete('/users/{user}', [App\Http\Controllers\UserController::class, 'destroy'])->name('users.destroy');
     Route::get('/user/password', [App\Http\Controllers\UserController::class, 'ChangePassword'])->name('users.password');
+    Route::post('/user/password', [App\Http\Controllers\UserController::class, 'UpdatePassword'])->name('users.change-password');
+
 
     //revisions routes
     Route::get('/revisions', [App\Http\Controllers\RevisionController::class, 'index'])->name('revisions.index');
