@@ -9,7 +9,7 @@
     @csrf
 
     <div class="row">
-    <input autocomplete="false" name="hidden" type="text" style="display:none;">
+        <input autocomplete="false" name="hidden" type="text" style="display:none;">
 
         <div class="col-md-3 m-3">
             <div class="form-group">
@@ -41,6 +41,11 @@
                     <button type="submit" class="btn btn-primary">تغيير كلمة المرور</button>
                 </div>
             </div>
+            @if(session()->has('success'))
+            <div class="alert alert-success">
+                {{ session()->get('success') }}
+            </div>
+            @endif
 </form>
 
 
@@ -79,8 +84,6 @@
     $('#password_confirmation').on('keydown', function() {
         $('#password_confirmation').removeClass('is-invalid');
     });
-    
-
 </script>
 
 @endsection
