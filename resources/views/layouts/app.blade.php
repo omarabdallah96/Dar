@@ -39,6 +39,10 @@
             transition: 0.5s;
             padding-top: 60px;
         }
+        body{
+            padding: 20px;
+
+        }
     </style>
 </head>
 

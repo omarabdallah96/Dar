@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Revision;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class RevisionController extends Controller
@@ -22,9 +23,14 @@ class RevisionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
         //
+        $student = Student::find($id);
+        if (!$student) {
+            return redirect('/home');
+        }
+        return view('admin.revisions.create', compact('student'));
     }
 
     /**
@@ -36,6 +42,28 @@ class RevisionController extends Controller
     public function store(Request $request)
     {
         //
+        $data = $request->validate([
+            'student_id' => 'required|integer',
+            'from' => 'required|string',
+            'to' => 'required|string',
+            'revision_type' => 'required|string',
+            'note' => 'required|string',
+        ]);
+
+
+        // return $data;
+        $revision = new Revision();
+        $revision->student_id = $data['student_id'];
+        $revision->from = $data['from'];
+        $revision->to = $data['to'];
+        $revision->type = $data['revision_type'];
+        $revision->note = $data['note'];
+        $revision->description = "ss";
+        $revision->user_id = auth()->user()->id;
+        $revision->save();
+
+        //redirect to route('students.show', $student->id)
+        return redirect()->route('students.sheet', $data['student_id'])->with('success', 'تم إضافة التعديل بنجاح');
     }
 
     /**
@@ -81,5 +109,16 @@ class RevisionController extends Controller
     public function destroy(Revision $revision)
     {
         //
+    }
+    public function sheet($id)
+    {
+        $student = Student::find($id);
+        if (!$student) {
+            return redirect('/home');
+        }
+
+        $revisions = Revision::where('student_id', $id)->where('user_id', auth()->user()->id)->orderBy('created_at', 'desc')->get();
+
+        return view('admin.students.sheet', compact('student', 'revisions'));
     }
 }

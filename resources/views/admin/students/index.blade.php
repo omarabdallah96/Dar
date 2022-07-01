@@ -59,6 +59,9 @@
                 <a href="{{route('students.edit', $student->id)}}" class="btn btn-warning">
                     <i class="fas fa-edit"></i>
                 </a>
+                <a href="{{route('students.sheet', $student->id)}}" class="btn btn-warning">
+                    <i class="fas fa-file-pdf"></i>
+                </a>
 
             </td>
         </tr>

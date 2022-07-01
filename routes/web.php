@@ -20,7 +20,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/students', [App\Http\Controllers\StudentController::class, 'store'])->name('students.store');
     Route::get('/students/{id}', [App\Http\Controllers\StudentController::class, 'show'])->name('students.show');
     Route::get('/students/{id}/edit', [App\Http\Controllers\StudentController::class, 'edit'])->name('students.edit');
-    
+
+
 
 
     //users routes 
@@ -38,6 +39,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     //revisions routes
     Route::get('/revisions', [App\Http\Controllers\RevisionController::class, 'index'])->name('revisions.index');
+    Route::get('/students/{id}/sheet', [App\Http\Controllers\RevisionController::class, 'sheet'])->name('students.sheet');
+    Route::get('/revisions/create/{id}', [App\Http\Controllers\RevisionController::class, 'create'])->name('revisions.create');
+    Route::post('/revisions/store', [App\Http\Controllers\RevisionController::class, 'store'])->name('revisions.store');
 });
 
 

@@ -20,7 +20,7 @@ class CreateRevisionsTable extends Migration
             $table->string('from');
             $table->string('to');
             $table->string('type');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->string('note');
             $table->timestamps();
         });
