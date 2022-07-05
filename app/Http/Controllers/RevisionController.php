@@ -48,6 +48,7 @@ class RevisionController extends Controller
             'to' => 'required|string',
             'revision_type' => 'required|string',
             'note' => 'required|string',
+            'notes'=> 'string'
         ]);
 
 
@@ -58,7 +59,7 @@ class RevisionController extends Controller
         $revision->to = $data['to'];
         $revision->type = $data['revision_type'];
         $revision->note = $data['note'];
-        $revision->description = "ss";
+        $revision->description = $data['notes'] ?? null ;
         $revision->user_id = auth()->user()->id;
         $revision->save();
 

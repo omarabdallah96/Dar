@@ -1,18 +1,21 @@
 @extends('layouts.app')
 
 <style>
-    .badge{
+    .badge {
         font-size: 12px;
         font-weight: bold;
 
     }
-    .badge-success{
+
+    .badge-success {
         background-color: #5cb85c;
     }
-    .badge-warning{
+
+    .badge-warning {
         background-color: blue;
     }
-    .badge-info{
+
+    .badge-info {
         background-color: #f0ad4e;
     }
 </style>
@@ -61,17 +64,17 @@
             <td>
                 @if($revision->type == 1)
                 <span class="badge badge-success">حفظ</span>
-                
+
                 @elseif($revision->type == 2)
                 <span class="badge badge-info">تسميع</span>
-                
+
                 @elseif($revision->type == 3)
                 <span class="badge badge-warning">مراجعة</span>
-                
+
                 @endif
             </td>
             <td>{{$revision->note}}</td>
-            <td>{{$revision->description}}</td>
+            <td>{{$revision->description ? $revision->description : "---"}}</td>
             <td>
                 <!-- format the date -->
                 {{$revision->created_at->format('d-m-Y')}}

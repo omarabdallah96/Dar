@@ -51,33 +51,34 @@
                 <input type="text" class="form-control" name="to" id="m_name" required autocomplete="off" placeholder="الى الاية">
             </div>
         </div>
-        <div class="row">
+    </div>
+    <div class="row">
 
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="last_name">نوع التسميعة</label>
-                    <select class="form-control form-select" name="revision_type">
-                        <option value="1">حفظ</option>
-                        <option value="2">تسميع</option>
-                        <option value="2">مراجعة</option>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="last_name">نوع التسميعة</label>
+                <select class="form-control form-select" name="revision_type">
+                    <option value="1">حفظ</option>
+                    <option value="2">تسميع</option>
+                    <option value="2">مراجعة</option>
 
 
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="phone">التقيم</label>
-                    <input type="number" class="form-control" name="note" id="note" required autocomplete="off" placeholder="العلامة على 20 " min="0" max="20">
-                </div>
+                </select>
             </div>
         </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="phone">التقيم</label>
+                <input type="number" class="form-control" name="note" id="note" required autocomplete="off" placeholder="العلامة على 20 " min="0" max="20">
+            </div>
+        </div>
+    </div>
     </div>
     <div class="row">
         <div class="col-md-3">
             <div class="form-group">
                 <label for="phone">ملاحظات</label>
-                <textarea class="form-control" name="" id=""></textarea>
+                <textarea class="form-control" name="notes" id=""></textarea>
             </div>
         </div>
 
@@ -91,7 +92,7 @@
         <i class="fas fa-trash-alt"></i>
         مسح الحقول
     </button>
-    <button type="button" class="btn btn-secondary float-right mt-3 mr-3" onclick="window.location.href='{{route('students.index')}}'">
+    <button type="button" class="btn btn-secondary float-right mt-3 mr-3" onclick="window.location.href=`{{route('students.index')}}`">
         <i class="fas fa-backward"></i>
         رجوع
     </button>
