@@ -17,11 +17,12 @@ class CreateRevisionsTable extends Migration
             $table->id();
             $table->bigInteger('user_id');
             $table->bigInteger('student_id');
+            $table->integer('soura');
             $table->string('from');
             $table->string('to');
             $table->string('type');
             $table->string('description')->nullable();
-            $table->string('note');
+            $table->string('note')->nullable();
             $table->timestamps();
         });
     }

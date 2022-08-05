@@ -105,9 +105,26 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function edit(Student $student)
+    public function edit($id)
     {
         //
+        if ($this->isAdmin()) {
+            $student = Student::find($id);
+            //if !user, redirect to home page
+            if (!$student) {
+                return redirect('/home');
+            }
+            $users = User::where('id', $student->user_id)->first();
+            return view('admin.students.edit', compact('student', 'users'));
+        } else {
+            $student = Student::where('id', $id)->where('user_id', auth()->user()->id)->first();
+            if ($student) {
+                $users = User::where('id', $student->user_id)->first();
+
+                return view('admin.students.edit', compact('student', 'users'));
+            }
+            return redirect('/home');
+        }
     }
 
     /**

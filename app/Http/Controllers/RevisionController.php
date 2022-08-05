@@ -30,7 +30,9 @@ class RevisionController extends Controller
         if (!$student) {
             return redirect('/home');
         }
-        return view('admin.revisions.create', compact('student'));
+        //get sora from config file
+        $swar = config('swar');
+        return view('admin.revisions.create', compact('student', 'swar'));
     }
 
     /**
@@ -42,14 +44,24 @@ class RevisionController extends Controller
     public function store(Request $request)
     {
         //
-        $data = $request->validate([
+        // return $request->all();
+
+        $data = $request->capture([
             'student_id' => 'required|integer',
-            'from' => 'required|string',
-            'to' => 'required|string',
+            'from' => 'required|numeric',
+            //check if to is greater than from and if it is not equal to from
+            'to' => 'required|numeric|gt:from|ne:from',
+
             'revision_type' => 'required|string',
-            'note' => 'required|string',
-            'notes'=> 'string'
+            'notes' => 'string',
+            'soura' => 'required|numeric',
+            'created_at' => 'date'
         ]);
+
+        //change forma
+
+
+
 
 
         // return $data;
@@ -58,9 +70,10 @@ class RevisionController extends Controller
         $revision->from = $data['from'];
         $revision->to = $data['to'];
         $revision->type = $data['revision_type'];
-        $revision->note = $data['note'];
-        $revision->description = $data['notes'] ?? null ;
+        $revision->soura = $data['soura'];
+        $revision->description = $data['notes'] ?? null;
         $revision->user_id = auth()->user()->id;
+        $revision->created_at = $data['created_at'];
         $revision->save();
 
         //redirect to route('students.show', $student->id)

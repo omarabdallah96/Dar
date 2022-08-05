@@ -40,7 +40,7 @@
         <div class="col-md-3">
             <div class="form-group">
                 <label for="name">من</label>
-                <input type="text" class="form-control" name="from" id="name" required autocomplete="off" placeholder="من الاية">
+                <input type="number" class="form-control" name="from" id="name" required autocomplete="off" placeholder="من الاية">
             </div>
         </div>
         <div class="col-md-3">
@@ -48,11 +48,22 @@
                 <label for="m_name">
                     الى
                 </label>
-                <input type="text" class="form-control" name="to" id="m_name" required autocomplete="off" placeholder="الى الاية">
+                <input type="number" class="form-control" name="to" id="m_name" required autocomplete="off" placeholder="الى الاية">
             </div>
         </div>
     </div>
     <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="soura">السورة</label>
+                <select name="soura" class="form-control form-select" id="sora">
+                    @foreach ($swar as $sora)
+                    <option value="{{$sora['id']}}">{{$sora['name']}}</option>
+                    @endforeach
+
+                </select>
+            </div>
+        </div>
 
         <div class="col-md-3">
             <div class="form-group">
@@ -66,15 +77,17 @@
                 </select>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <label for="phone">التقيم</label>
-                <input type="number" class="form-control" name="note" id="note" required autocomplete="off" placeholder="العلامة على 20 " min="0" max="20">
-            </div>
-        </div>
+
     </div>
     </div>
     <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="last_name">التاريخ</label>
+                <input type="datetime-local" class="form-control" name="created_at" id="created_at" required autocomplete="off" placeholder="التاريخ">
+
+            </div>
+        </div>
         <div class="col-md-3">
             <div class="form-group">
                 <label for="phone">ملاحظات</label>
