@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('title')
-الطالب {{{$student->name}}}
+الطالب {{{$user->name}}}
 @endsection
 
 @section('content')
@@ -16,11 +16,11 @@
                         الرئيسية</a></li>
 
                 </a></li>
-                <li class="breadcrumb-item"><a href="{{route('students.index')}}">
-                        الطلاب
+                <li class="breadcrumb-item"><a href="{{route('users.index')}}">
+                        المستخدمين
                     </a></li>
                 <li class="breadcrumb-item active" aria-current="page">
-                    {{{$student->name}}}
+                    {{{$user->name}}}
                 </li>
             </ol>
         </nav>
@@ -34,13 +34,11 @@
                             <!-- <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150"> -->
                             <div class="mt-3">
                                 <h4>
-                                    {{{$student->name}}} {{{$student->last_name}}}
+                                    {{{$user->name}}} {{{$user->last_name}}}
                                 </h4>
                                 <p class="text-secondary mb-1">
-                                    اسم المعلم
-                                    <br>
 
-                                    {{{$users->name}}}{{$users->last_name}}
+                                    {{{$user->name}}}
                                 </p>
 
                             </div>
@@ -59,7 +57,7 @@
                                 </h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                {{$student->name}} {{$student->lastname}} {{$student->m_name}}
+                                {{$user->name}} {{$user->lastname}} {{$user->m_name}}
                             </div>
                         </div>
                         <hr>
@@ -68,7 +66,7 @@
                                 <h6 class="mb-0">رقم الهاتف</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                {{$student->phone}}
+                                {{$user->phone}}
                             </div>
                         </div>
                         <hr>
@@ -77,7 +75,7 @@
                                 <h6 class="mb-0">عنوان السكن</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                {{$student->address}}
+                                {{$user->address}}
                             </div>
                         </div>
                         <hr>
@@ -86,7 +84,7 @@
                                 <h6 class="mb-0">الحالة</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                @if($student->active == 1)
+                                @if($user->active == 1)
                                 <span class="text-success">مفعل</span>
 
 
@@ -102,7 +100,7 @@
                                 <h6 class="mb-0">الحنس</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                @if($student->sex == 'm')
+                                @if($user->sex == 'm')
                                 <img src="https://img.icons8.com/ios-glyphs/24/0652DD/male.png" />
                                 ذكر
 
@@ -117,7 +115,7 @@
                         <hr>
                         <div class="row">
                             <div class="col-sm-12">
-                                <a class="btn btn-primary " target="__blank" href="{{url('/students/'.$student->id.'/edit')}}">
+                                <a class="btn btn-primary " target="__blank" href="{{url('/students/'.$user->id.'/edit')}}">
                                     <i class="fa fa-edit"></i>
                                     تعديل البيانات
                                 </a>

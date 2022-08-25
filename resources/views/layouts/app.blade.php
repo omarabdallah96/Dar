@@ -80,12 +80,16 @@
 
                     </span>
                 </a>
+
+
+                @if(auth()->user()->group == 1)
                 <a href="{{ route('users.index') }}">
                     <i class="fas fa-users"></i>
                     <span>
                         المستخدمين
                     </span>
                 </a>
+                @endif  
                 <a href="{{ route('users.password') }}">
                     <i class="fas fa-key"></i>
                     <span>

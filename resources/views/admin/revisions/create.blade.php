@@ -36,6 +36,11 @@
     @csrf
     <!-- 2 fields per row -->
     <input type="hidden" name="student_id" value="{{$student->id}}">
+    @if($errors->any())
+    <div class="alert alert-danger">
+        {{$errors->all()}}
+    </div>
+    @endif
     <div class="row">
         <div class="col-md-3">
             <div class="form-group">

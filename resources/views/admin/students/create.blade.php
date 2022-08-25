@@ -52,7 +52,7 @@
                 <label for="sex">
                     الحنس
                 </label>
-                <select id="sex" class="form-control" name="sex">
+                <select id="sex" class="form-control form-select" name="sex">
                     <option value="m">
                         ذكر
                     </option>
@@ -71,9 +71,9 @@
         @if(auth()->user()->group == 1)
         <div class="col-md-3">
             @if(count($users) > 0)
-            <div class="form-group">
+            <div class="form-group ">
                 <label for="user_id">المستخدم</label>
-                <select id="user_id" class="form-control" name="user_id">
+                <select id="user_id" class="form-control form-select" name="user_id">
                     @foreach($users as $user)
                     <option value="{{$user->id}}">
                         {{$user->name}}

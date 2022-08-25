@@ -17,14 +17,18 @@ class UserController extends Controller
     //constructor to make sure only logged in users can access this controller
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
         //if user is not admin, redirect to home page
     }
     public function index()
     {
         //return all users
-        $users = User::all();
-        return view('admin.users.index', compact('users'));
+        if ($this->isAdmin()) {
+            $users = User::all();
+
+            return view('admin.users.index', compact('users'));
+        }
+        return redirect('/home');
     }
 
     /**
@@ -86,9 +90,9 @@ class UserController extends Controller
      */
     public function show(Usergroup $usergroup, $id)
     {
-        //int 
+        //int
         //check if user is admin
-        return 'ss';
+
         if ($this->isAdmin()) {
             $user = User::find($id);
             //if !user, redirect to home page
@@ -110,9 +114,12 @@ class UserController extends Controller
      * @param  \App\Models\Usergroup  $usergroup
      * @return \Illuminate\Http\Response
      */
-    public function edit(Usergroup $usergroup)
+    public function edit($id)
     {
         //
+        $user = User::where('id', $id)->first();
+        // return $user;
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
@@ -122,9 +129,26 @@ class UserController extends Controller
      * @param  \App\Models\Usergroup  $usergroup
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Usergroup $usergroup)
+    public function update(Request $request, $id)
     {
-        //
+        // return $request;
+
+        if (!$this->isAdmin()) {
+            return redirect()->route('admin.users.index');
+        }
+        $user = User::where('id',$id)->first();
+        if (!$user) {
+            return redirect()->route('admin.users.index');
+        }
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->m_name = $request->input('m_name');
+        $user->last_name= $request->input('last_name');
+        $user->phone=$request->input('phone');
+        $user->address=$request->input('address');
+        // $user->sex=$request->input('sex');
+        $user->save();
+        return redirect()->route('users.index');
     }
 
     /**
@@ -136,6 +160,7 @@ class UserController extends Controller
     public function destroy(Usergroup $usergroup)
     {
         //
+
     }
 
     //check if user is admin
@@ -172,5 +197,9 @@ class UserController extends Controller
         $user->password = bcrypt($request->password);
         $user->save();
         return redirect()->back()->with('success', 'Password updated successfully');
+    }
+    //search
+    public function Search(Request $request)
+    {
     }
 }

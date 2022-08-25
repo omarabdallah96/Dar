@@ -46,17 +46,26 @@ class RevisionController extends Controller
         //
         // return $request->all();
 
+
+        //check if from is negative number
+        $from = $request->input('from');
+        $to = $request->input('to');
+        if ($from < 1 || $to < 1 || $from > $to) {
+            return redirect()->back()->with('error', 'Please enter a positive number');
+        }
         $data = $request->capture([
             'student_id' => 'required|integer',
-            'from' => 'required|numeric',
+            'from' => 'required|numeric|min:1',
             //check if to is greater than from and if it is not equal to from
-            'to' => 'required|numeric|gt:from|ne:from',
+            'to' => 'required|numeric|greater than from',
 
             'revision_type' => 'required|string',
             'notes' => 'string',
             'soura' => 'required|numeric',
             'created_at' => 'date'
         ]);
+
+
 
         //change forma
 

@@ -6,7 +6,11 @@
     }
 </style>
 @section('title')
+@if(auth()->user()->group== 1)
+قائمة الطلاب
+@else
 طلابي
+@endif
 @endsection
 
 @section('content')
@@ -20,6 +24,9 @@
         <tr>
             <th>الاسم</th>
             <th>العائلة</th>
+            @if(auth()->user()->group== 1)
+            <th>المعلم</th>
+            @endif
 
             <th>الحنس</th>
 
@@ -38,6 +45,14 @@
         <tr>
             <td>{{$student->name}}</td>
             <td>{{$student->last_name}}</td>
+            @if(auth()->user()->group== 1)
+
+            <td>
+                <a href="{{route('users.show', $student->user->id)}}">
+                    {{$student->user->name}} {{$student->user->last_name}}
+                </a>
+            </td>
+            @endif
             <td>
                 @if($student->sex=='m')
                 ذكر

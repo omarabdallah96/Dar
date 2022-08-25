@@ -52,7 +52,7 @@
                 <label for="sex">
                     الحنس
                 </label>
-                <select id="sex" class="form-control" name="sex">
+                <select id="sex" class="form-control form-select" name="sex">
                     <option value="m">
                         ذكر
                     </option>

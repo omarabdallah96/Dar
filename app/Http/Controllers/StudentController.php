@@ -17,11 +17,20 @@ class StudentController extends Controller
     public function index()
     {
         //check if user is admin
+
+        // return Student::with('user')->get();
+
         if (auth()->user()->group == 1) {
-            $students = Student::paginate(10);
+            $students = Student::orderBy('name', 'asc')
+                ->paginate(10);
             return view('admin.students.index', compact('students'));
         }
-        $students = Student::where('user_id', auth()->user()->id)->get();
+        $students = Student::where('user_id', auth()
+
+            ->user()->id)
+            ->orderBy('name', 'asc')
+
+            ->get();
 
         return view('admin.students.index', compact('students'));
     }
@@ -33,9 +42,13 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
-        $users = User::where('group', 2)->where('active', 1)->get();
-        return view('admin.students.create', compact('users'));
+        //if user is not admin
+        if (auth()->user()->group == 1) {
+
+            $users = User::where('group', 2)->where('active', 1)->get();
+            return view('admin.students.create', compact('users'));
+        }
+        return view('admin.students.create');
     }
 
     /**
@@ -78,7 +91,7 @@ class StudentController extends Controller
     public function show(Student $student, $id)
     {
         //
-        //int 
+        //int
         //check if user is admin
         if ($this->isAdmin()) {
             $student = Student::find($id);

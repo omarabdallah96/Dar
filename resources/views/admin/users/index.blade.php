@@ -21,7 +21,6 @@
             <th>الاسم</th>
             <th>العائلة</th>
 
-            <th>الحنس</th>
 
             <th>الحالة</th>
             <th>
@@ -38,13 +37,7 @@
         <tr>
             <td>{{$student->name}}</td>
             <td>{{$student->last_name}}</td>
-            <td>
-                @if($student->sex=='m')
-                ذكر
-                @else
-                أنثى
-                @endif
-            </td>
+
             <td>
                 @if($student->active)
                 مسجل
