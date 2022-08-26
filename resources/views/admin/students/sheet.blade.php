@@ -48,10 +48,11 @@
 <table class="table table-striped">
     <thead>
         <tr>
+            <th>السوره</th>
             <th>من</th>
             <th>الى</th>
             <th>نوع التسميعة</th>
-            <th>العلامة</th>
+            <!-- <th>العلامة</th> -->
             <th>ملاحظات</th>
             <th>التاريخ</th>
         </tr>
@@ -59,6 +60,8 @@
     <tbody>
         @foreach($revisions as $revision)
         <tr>
+            <td>
+                {{config('swar')[$revision->soura-1]['name']}}
             <td>{{$revision->from}}</td>
             <td>{{$revision->to}}</td>
             <td>
@@ -73,7 +76,7 @@
 
                 @endif
             </td>
-            <td>{{$revision->note}}</td>
+            <!-- <td>{{$revision->note}}</td> -->
             <td>{{$revision->description ? $revision->description : "---"}}</td>
             <td>
                 <!-- format the date -->

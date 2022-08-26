@@ -36,11 +36,7 @@
     @csrf
     <!-- 2 fields per row -->
     <input type="hidden" name="student_id" value="{{$student->id}}">
-    @if($errors->any())
-    <div class="alert alert-danger">
-        {{$errors->all()}}
-    </div>
-    @endif
+
     <div class="row">
         <div class="col-md-3">
             <div class="form-group">
@@ -102,11 +98,11 @@
 
     </div>
 
-    <button type="submit" class="btn btn-primary float-right mt-3">
+    <button type="submit" class="btn btn-primary float-right mt-3" onclick="Check();">
         <i class="fas fa-save"></i>
         حفظ
     </button>
-    <button type="reset" class="btn btn-danger float-right mt-3 mr-3">
+    <button type="reset" class="btn btn-danger float-right mt-3 mr-3" id="savedata">
         <i class="fas fa-trash-alt"></i>
         مسح الحقول
     </button>
@@ -120,3 +116,4 @@
 
 
 @endsection
+
