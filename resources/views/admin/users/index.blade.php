@@ -55,6 +55,11 @@
                 <a href="{{route('users.password', ['id'=>$student->id])}}" class="btn btn-danger">
                     <i class="fas fa-key"></i>
                 </a>
+                @if($student->group != 1)
+                <a href="{{route('time.byid', ['id'=>$student->id])}}" class="btn btn-success">
+                    <i class="fas fa-calendar"></i>
+                </a>
+                @endif
             </td>
         </tr>
         @empty

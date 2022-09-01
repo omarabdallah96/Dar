@@ -56,7 +56,7 @@
         <body>
 
             <div id="mySidenav" class="sidenav float-right">
-                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <a href="javascript:void(0)" class="closebtn hidden-prin" onclick="closeNav()">&times;</a>
                 <a href="{{route('home')}}">
                     <i class="fas fa-home"></i>
                     <span>
@@ -91,12 +91,15 @@
                     </span>
                 </a>
                 @endif
+                @if(auth()->user()->group != 1)
+
                 <a href="{{ route('time.index') }}">
-                    <i  class="fas fa-calendar"></i>
+                    <i class="fas fa-calendar"></i>
                     <span>
                         جدول التلاميذ
                     </span>
                 </a>
+                @endif
                 <a href="{{ route('users.password',['id'=>auth()->user()->id]) }}">
                     <i class="fas fa-key"></i>
                     <span>
@@ -114,7 +117,7 @@
             </div>
 
 
-            <span style="font-size:30px;cursor:pointer " onclick="openNav()">
+            <span style="font-size:30px;cursor:pointer " onclick="openNav()" class="hidden-print">
                 <i class="ml-3 fas fa-bars"></i>
             </span>
 

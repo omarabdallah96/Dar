@@ -49,6 +49,8 @@ Route::group(['middleware' => 'auth'], function () {
     //time sheets routes
 
     Route::get('/times', [App\Http\Controllers\TimesheetController::class, 'index'])->name('time.index');
+    Route::get('/times/{id}', [App\Http\Controllers\TimesheetController::class, 'TimeById'])->name('time.byid');
+
     Route::get('/time/create', [App\Http\Controllers\TimesheetController::class, 'create'])->name('time.create');
     Route::post('/time/store', [App\Http\Controllers\TimesheetController::class, 'store'])->name('time.store');
 });

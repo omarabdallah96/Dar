@@ -13,8 +13,17 @@
                 <div class="card-header">{{ __('عدد الطلاب') }}</div>
                 <div>
                     <div class="m-3 alert alert-success">
-                        عدد الطلاب :  {{$users->students->count()}}
+                        عدد الطلاب : {{$users}}
                     </div>
+                    @if(auth()->user()->group!= 1)
+
+                    <div class="m-3 alert alert-success">
+                        <a href="{{route('time.index')}}">
+                            مواعيد اليوم : {{$today_user}}
+
+                        </a>
+                    </div>
+                    @endif
 
                 </div>
             </div>

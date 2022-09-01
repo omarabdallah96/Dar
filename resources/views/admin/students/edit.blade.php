@@ -32,79 +32,91 @@
                 </div>
             </div>
             <div class="col-lg-8">
-            <form action="{{route('students.update',$student->id)}}" method="POST">
-                @csrf
+                <form action="{{route('students.update',$student->id)}}" method="POST">
+                    @csrf
 
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row mb-3">
-                            <div class="col-sm-3">
-                                <h6 class="mb-0">الاسم</h6>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">الاسم</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" required class="form-control" value="{{$student->name}}" name="name">
+                                </div>
                             </div>
-                            <div class="col-sm-9 text-secondary">
-                                <input type="text" required class="form-control" value="{{$student->name}}" name="name">
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">اسم الاب</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" required class="form-control" value="{{$student->m_name}}" name="m_name">
+                                </div>
                             </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-sm-3">
-                                <h6 class="mb-0">اسم الاب</h6>
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">العائلة</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" required class="form-control" value="{{$student->last_name}}" name="last_name">
+                                </div>
                             </div>
-                            <div class="col-sm-9 text-secondary">
-                                <input type="text" required class="form-control" value="{{$student->m_name}}" name="m_name">
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">الهاتف</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" required class="form-control" value="{{$student->phone}}" name="phone">
+                                </div>
                             </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-sm-3">
-                                <h6 class="mb-0">العائلة</h6>
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">الايميل</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" class="form-control" value="{{$student->email}}" name="email" placeholder="ايميل الطالب">
+                                </div>
                             </div>
-                            <div class="col-sm-9 text-secondary">
-                                <input type="text" required class="form-control" value="{{$student->last_name}}" name="last_name">
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">عنوان السكن</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" required class="form-control" value="{{$student->address}}" name="address" placeholder="عنوان السكن">
+                                </div>
                             </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-sm-3">
-                                <h6 class="mb-0">الهاتف</h6>
-                            </div>
-                            <div class="col-sm-9 text-secondary">
-                                <input type="text" required class="form-control" value="{{$student->phone}}" name="phone">
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-sm-3">
-                                <h6 class="mb-0">الايميل</h6>
-                            </div>
-                            <div class="col-sm-9 text-secondary">
-                                <input type="text" class="form-control" value="{{$student->email}}" name="email" placeholder="ايميل الطالب">
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-sm-3">
-                                <h6 class="mb-0">عنوان السكن</h6>
-                            </div>
-                            <div class="col-sm-9 text-secondary">
-                                <input type="text" required class="form-control" value="{{$student->address}}" name="address" placeholder="عنوان السكن">
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <div class="col-sm-3">
-                                <h6 class="mb-0">الجنس</h6>
-                            </div>
-                            <div class="col-sm-9 text-secondary">
-                            <select class="form-control form-select" name="sex">
-                                    <option value="m" {{$student->sex == 'm' ? 'selected' : ''}}>ذكر</option>
-                                    <option value="f" {{$student->sex == 'f' ? 'selected' : ''}}>أنثى</option>
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">الجنس</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <select class="form-control form-select" name="sex">
+                                        <option value="m" {{$student->sex == 'm' ? 'selected' : ''}}>ذكر</option>
+                                        <option value="f" {{$student->sex == 'f' ? 'selected' : ''}}>أنثى</option>
 
-                                   </select>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3"></div>
-                            <div class="col-sm-9 text-secondary">
-                                <input type="submit" class="btn btn-primary px-4" value="حفظ التغييرات">
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">الحالة</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <select class="form-control form-select" name="active">
+                                        <option value="1" {{$student->active == 1 ? 'selected' : ''}}>مسجل</option>
+                                        <option value="0" {{$student->active == 0 ? 'selected' : ''}}>غير مسجل</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3"></div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="submit" class="btn btn-primary px-4" value="حفظ التغييرات">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
 
                 </form>

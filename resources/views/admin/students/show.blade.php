@@ -121,6 +121,10 @@
                                     <i class="fa fa-edit"></i>
                                     تعديل البيانات
                                 </a>
+                                <!-- <a class="btn btn-primary " target="__blank" href="{{url('/students/'.$student->id.'/edit')}}">
+                                    <i class="fa fa-trash"></i>
+                                    مسح السجل
+                                </a> -->
                             </div>
                         </div>
                     </div>

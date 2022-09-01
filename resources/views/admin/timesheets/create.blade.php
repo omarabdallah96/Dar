@@ -17,7 +17,7 @@
 </style>
 
 @section('title')
-اضافة طالب
+اضافة سجل
 
 @endsection
 

@@ -16,38 +16,42 @@ class TimesheetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id=null)
+    public function index($id = null)
     {
         //  //convert date to 12 hours
         // $date = Carbon::now()->format('Y-m-d H:i:s A');
         // return $date;
 
-        
-        if (auth()->user()->group == 1) {
-            $timesheets = Timesheet::join('students', 'timesheets.student_id',  'students.id')
-                ->join('users', 'timesheets.user_id', 'users.id')
-                ->select(
-                    'day_name as day_name',
-                    'time_day as time_day',
-                    'students.name as student_name',
-                    'students.last_name as student_last_name',
-                    'users.name as user_name',
-                    'users.last_name as user_last_name',
-                    'timesheets.created_at as created_at',
-                    'timesheets.updated_at as updated_at'
-                )
+        $user_id = auth()->user()->id;
 
-                ->get();
+
+        if (auth()->user()->group == 1) {
+            // $timesheets = Timesheet::join('students', 'timesheets.student_id',  'students.id')
+            //     ->join('users', 'timesheets.user_id', 'users.id')
+            //     ->select(
+            //         'day_name as day_name',
+            //         'time_day as time_day',
+            //         'students.name as student_name',
+            //         'students.last_name as student_last_name',
+            //         'users.name as user_name',
+            //         'users.last_name as user_last_name',
+            //         'timesheets.created_at as created_at',
+            //         'timesheets.updated_at as updated_at'
+            //     )
+
+            //     ->get();
+            return redirect('/home');
         } else {
-            $timesheets = Timesheet::where('user_id', auth()->user()->id)
+            $timesheets = Timesheet::where('timesheets.user_id', '=',  $user_id)
                 ->join('students', 'timesheets.student_id',  'students.id')
+                ->where('timesheets.is_active', true)
+                ->where('students.active', '=', 1)
+
                 ->select(
                     'day_name as day_name',
                     'time_day as time_day',
                     'students.name as student_name',
                     'students.last_name as student_last_name',
-                    'users.name as user_name',
-                    'users.last_name as user_last_name',
                     'timesheets.created_at as created_at',
                     'timesheets.updated_at as updated_at'
                 )
@@ -67,9 +71,11 @@ class TimesheetController extends Controller
 
         $time_shift = config('time_shift');
 
+        $user = auth()->user();
 
 
-        return view('admin.timesheets.index', compact('timesheets', 'time_shift'));
+
+        return view('admin.timesheets.index', compact('timesheets', 'time_shift', 'user'));
     }
 
     /**
@@ -95,7 +101,7 @@ class TimesheetController extends Controller
             '4' => 'الخميس',
             '5' => 'الجمعة',
             '6' => 'السبت',
-            '7' => 'الأحد',
+            // '7' => 'الأحد',
 
         ];
 
@@ -198,5 +204,39 @@ class TimesheetController extends Controller
     public function destroy(Timesheet $timesheet)
     {
         //
+    }
+
+
+    public function TimeById($id)
+    {
+
+        if (auth()->user()->group == 1) {
+            $user = User::find($id);
+            if (!$user || $user->group == 1) {
+                return redirect()->back();
+            }
+            $timesheets = Timesheet::where('timesheets.user_id', '=',  $id)
+                ->join('students', 'timesheets.student_id',  'students.id')
+                ->where('timesheets.is_active', true)
+                ->where('students.active', '=', 1)
+                ->select(
+                    'day_name as day_name',
+                    'time_day as time_day',
+                    'students.name as student_name',
+                    'students.last_name as student_last_name',
+                    'timesheets.created_at as created_at',
+                    'timesheets.updated_at as updated_at'
+                )
+                ->orderBy('time_day')
+
+                ->get();
+            $time_shift = config('time_shift');
+
+
+
+            return view('admin.timesheets.index', compact('timesheets', 'time_shift', 'user'));
+        }
+
+        return redirect('/home');
     }
 }

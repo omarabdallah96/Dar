@@ -19,6 +19,7 @@ class CreateTimesheetsTable extends Migration
             $table->integer('time_day');
             $table->integer('user_id')->nullable();
             $table->integer('student_id')->nullable();
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }
