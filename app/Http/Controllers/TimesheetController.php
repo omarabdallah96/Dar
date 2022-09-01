@@ -16,11 +16,13 @@ class TimesheetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id=null)
     {
         //  //convert date to 12 hours
         // $date = Carbon::now()->format('Y-m-d H:i:s A');
         // return $date;
+
+        
         if (auth()->user()->group == 1) {
             $timesheets = Timesheet::join('students', 'timesheets.student_id',  'students.id')
                 ->join('users', 'timesheets.user_id', 'users.id')

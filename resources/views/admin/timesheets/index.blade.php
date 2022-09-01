@@ -12,6 +12,10 @@
         font-size: 14px;
         text-align: center;
     }
+
+    .timesheet {
+        word-wrap: break-word;
+    }
 </style>
 @section('title')
 @if(auth()->user()->group== 1)
@@ -41,6 +45,7 @@
             <hr>
             @foreach($time_shift as $time )
             {{$time}}
+
             <br>
 
 
@@ -48,7 +53,7 @@
 
             @endforeach
         </div>
-        <div class="grid-item">
+        <div class="grid-item timesheet">
             <span>
                 الاثنين
             </span>
@@ -60,7 +65,10 @@
             @foreach($timesheets as $timesheet)
 
             @if($timesheet->time_day == $date && $timesheet->day_name== 1)
-            {{$timesheet->student_name}}
+            <span class="timesheet">
+                {{$timesheet->student_name}} {{$timesheet->student_last_name}}
+
+            </span>
 
 
             @endif
@@ -86,7 +94,7 @@
             @foreach($timesheets as $timesheet)
 
             @if($timesheet->time_day == $date && $timesheet->day_name== 2)
-            {{$timesheet->student_name}}
+            {{$timesheet->student_name}} {{$timesheet->student_last_name}}
 
 
             @endif
@@ -107,7 +115,7 @@
             @foreach($timesheets as $timesheet)
 
             @if($timesheet->time_day == $date && $timesheet->day_name== 3)
-            {{$timesheet->student_name}}
+            {{$timesheet->student_name}} {{$timesheet->student_last_name}}
 
 
             @endif
@@ -128,7 +136,7 @@
             @foreach($timesheets as $timesheet)
 
             @if($timesheet->time_day == $date && $timesheet->day_name== 4)
-            {{$timesheet->student_name}}
+            {{$timesheet->student_name}} {{$timesheet->student_last_name}}
 
 
             @endif
@@ -149,7 +157,7 @@
             @foreach($timesheets as $timesheet)
 
             @if($timesheet->time_day == $date && $timesheet->day_name== 5)
-            {{$timesheet->student_name}}
+            {{$timesheet->student_name}} {{$timesheet->student_last_name}}
 
 
             @endif
@@ -172,7 +180,7 @@
             @if($timesheet->time_day == $date && $timesheet->day_name== 6)
 
             <span>
-                {{$timesheet->student_name}}
+                {{$timesheet->student_name}} {{$timesheet->student_last_name}}
             </span>
 
 
