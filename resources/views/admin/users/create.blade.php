@@ -24,7 +24,7 @@
         <div class="col-md-3">
             <div class="form-group">
                 <label for="name">الاسم</label>
-                <input type="text" class="form-control" name="name" id="name" required autocomplete="off" placeholder="اسم الطالب">
+                <input type="text" class="form-control" name="name" id="name" required autocomplete="off" placeholder="الاسم">
             </div>
         </div>
         <div class="col-md-3">

@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-<form action="{{route('users.change-password', $user->id)}}" method="POST" class="p-3" autocomplete="off">
+<form action="{{route('users.change-password',['id'=> $user->id])}}" method="POST" class="p-3" autocomplete="off">
     @csrf
 
     <div class="row">

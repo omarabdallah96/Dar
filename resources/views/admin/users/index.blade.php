@@ -52,7 +52,7 @@
                 <a href="{{route('users.edit', $student->id)}}" class="btn btn-warning">
                     <i class="fas fa-edit"></i>
                 </a>
-                <a href="{{route('users.password', $student->id)}}" class="btn btn-danger">
+                <a href="{{route('users.password', ['id'=>$student->id])}}" class="btn btn-danger">
                     <i class="fas fa-key"></i>
                 </a>
             </td>

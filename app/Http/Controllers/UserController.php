@@ -136,16 +136,17 @@ class UserController extends Controller
         if (!$this->isAdmin()) {
             return redirect()->route('admin.users.index');
         }
-        $user = User::where('id',$id)->first();
+        $user = User::where('id', $id)->first();
         if (!$user) {
             return redirect()->route('admin.users.index');
         }
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->m_name = $request->input('m_name');
-        $user->last_name= $request->input('last_name');
-        $user->phone=$request->input('phone');
-        $user->address=$request->input('address');
+        $user->last_name = $request->input('last_name');
+        $user->phone = $request->input('phone');
+        $user->address = $request->input('address');
+        $user->active = $request->input('active');
         // $user->sex=$request->input('sex');
         $user->save();
         return redirect()->route('users.index');
@@ -176,8 +177,18 @@ class UserController extends Controller
 
     public function ChangePassword(Request $request)
     {
+        $user = User::find($request->input('id'));
 
-        $user = auth()->user();
+        if (!$user) {
+            return redirect()->route('users.index');
+        }
+
+        if (auth()->user()->group == 1) {
+            $user = User::find($request->id);
+        } else {
+            $user = auth()->user();
+        }
+
         if (!$user) {
             return redirect('/home');
         }
@@ -186,7 +197,7 @@ class UserController extends Controller
 
     public function UpdatePassword(Request $request)
     {
-        $user = auth()->user();
+        $user = User::find($request->id);
         if (!$user) {
             return redirect('/home');
         }

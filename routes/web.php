@@ -20,6 +20,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/students', [App\Http\Controllers\StudentController::class, 'store'])->name('students.store');
     Route::get('/students/{id}', [App\Http\Controllers\StudentController::class, 'show'])->name('students.show');
     Route::get('/students/{id}/edit', [App\Http\Controllers\StudentController::class, 'edit'])->name('students.edit');
+    Route::post('/students_update/{id}', [App\Http\Controllers\StudentController::class, 'update'])->name('students.update');
+
 
 
 
@@ -43,10 +45,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/students/{id}/sheet', [App\Http\Controllers\RevisionController::class, 'sheet'])->name('students.sheet');
     Route::get('/revisions/create/{id}', [App\Http\Controllers\RevisionController::class, 'create'])->name('revisions.create');
     Route::post('/revisions/store', [App\Http\Controllers\RevisionController::class, 'store'])->name('revisions.store');
+
+    //time sheets routes
+
+    Route::get('/time', [App\Http\Controllers\TimesheetController::class, 'index'])->name('time.index');
+    Route::get('/time/create', [App\Http\Controllers\TimesheetController::class, 'create'])->name('time.create');
+    Route::post('/time/store', [App\Http\Controllers\TimesheetController::class, 'store'])->name('time.store');
 });
 
 
-//end auth routes group
+//end auth routes group/
 
 
 Route::get('/', function () {

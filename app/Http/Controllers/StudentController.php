@@ -149,7 +149,23 @@ class StudentController extends Controller
      */
     public function update(Request $request, Student $student)
     {
-        //
+        //check if user isAdmin
+        if ($this->isAdmin()) {
+            $student = Student::where('id', $request->id)->first();
+        } else {
+            $student = Student::where('id', $request->id)
+                ->where('user_id', auth()->user()->id)
+                ->first();
+        }
+
+        if (!$student) {
+            return redirect('/home');
+        }
+        //remove token from request
+
+        $student->update($request->except('_token'));
+
+        return redirect('/students');
     }
 
     /**

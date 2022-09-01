@@ -80,6 +80,18 @@
                                     <input type="text" class="form-control" value="{{$user->address}}" name="address" placeholder="عنوان السكن">
                                 </div>
                             </div>
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">الحالة</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                   <select class="form-control form-select" name="active">
+                                    <option value="1" {{$user->active == 1 ? 'selected' : ''}}>نشط</option>
+                                    <option value="0" {{$user->active == 0 ? 'selected' : ''}}>متوقف</option>
+
+                                   </select>
+                                </div>
+                            </div>
 
                             <div class="row">
                                 <div class="col-sm-3"></div>

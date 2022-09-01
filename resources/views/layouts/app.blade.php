@@ -39,7 +39,8 @@
             transition: 0.5s;
             padding-top: 60px;
         }
-        body{
+
+        body {
             padding: 20px;
 
         }
@@ -89,13 +90,20 @@
                         المستخدمين
                     </span>
                 </a>
-                @endif  
-                <a href="{{ route('users.password') }}">
+                @endif
+                <a href="{{ route('time.index') }}">
+                    <i  class="fas fa-calendar"></i>
+                    <span>
+                        جدول التلاميذ
+                    </span>
+                </a>
+                <a href="{{ route('users.password',['id'=>auth()->user()->id]) }}">
                     <i class="fas fa-key"></i>
                     <span>
                         تغيير كلمة المرور
                     </span>
                 </a>
+
                 <a href="/logout">
                     <i class="fas fa-sign-out-alt"></i>
                     <span>

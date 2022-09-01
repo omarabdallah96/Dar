@@ -8,6 +8,16 @@
     label {
         float: right;
     }
+    .title_create{
+        font-weight: bold;
+        color:white;
+        background-color: #dc3545;
+        height: 50px;
+        font-size: large;
+        padding: 10px 10px;
+        border-radius: 5px;
+        /* margin-bottom: 100px; */
+    }
 </style>
 
 @section('title')
@@ -16,7 +26,12 @@
 @endsection
 
 @section('content')
-
+<center>
+    <span class="title_create">
+        تسجيل طالب جديد
+    </span>
+</center>
+<br>
 <form action="{{route('students.store')}}" method="POST">
     @csrf
     <!-- 2 fields per row -->
@@ -72,7 +87,7 @@
         <div class="col-md-3">
             @if(count($users) > 0)
             <div class="form-group ">
-                <label for="user_id">المستخدم</label>
+                <label for="user_id">الاستاذ</label>
                 <select id="user_id" class="form-control form-select" name="user_id">
                     @foreach($users as $user)
                     <option value="{{$user->id}}">
@@ -83,11 +98,11 @@
             </div>
             @else
             <div class="form-group">
-            <label for="user_id">الاستاذ</label>
+                <label for="user_id">الاستاذ</label>
 
-            <a href="{{route('users.create')}}" class="btn btn-primary form-control">
-                اضافة مستخدم جديد
-            </a>
+                <a href="{{route('users.create')}}" class="btn btn-primary form-control">
+                    اضافة مستخدم جديد
+                </a>
             </div>
             @endif
         </div>

@@ -95,7 +95,7 @@
                             </div>
                         </div>
                         <hr>
-                        <div class="row">
+                        <!-- <div class="row">
                             <div class="col-sm-3">
                                 <h6 class="mb-0">الحنس</h6>
                             </div>
@@ -111,11 +111,11 @@
 
                                 </i> @endif
                             </div>
-                        </div>
+                        </div> -->
                         <hr>
                         <div class="row">
                             <div class="col-sm-12">
-                                <a class="btn btn-primary " target="__blank" href="{{url('/students/'.$user->id.'/edit')}}">
+                                <a class="btn btn-primary " target="__blank" href="{{url('/users/'.$user->id.'/edit')}}">
                                     <i class="fa fa-edit"></i>
                                     تعديل البيانات
                                 </a>
