@@ -43,7 +43,6 @@
     {{session('error')}}
 </div>
 @endif
-@if(count($student) > 0 )
 
 <form action="{{route('time.store')}}" method="POST">
     @csrf
@@ -54,10 +53,7 @@
             <div class="form-group">
                 <label for="name">اليوم</label>
                 <select class="form-control form-select" name="day_name">
-                    @foreach($days as $key => $value)
-                    <option value="{{ $key }}">{{ $value }}</option>
 
-                    @endforeach
 
                 </select>
 
@@ -65,12 +61,9 @@
         </div>
         <div class="col-md-3">
             <div class="form-group">
-                <label for="name">الوقت</label>
+                <label for="name">اليوم</label>
                 <select class="form-control form-select" name="time_day">
-                    @foreach($time_shift as $key => $value)
-                    <option value="{{ $key }}">{{ $value }}</option>
 
-                    @endforeach
 
                 </select>
 
@@ -84,9 +77,7 @@
             <div class="form-group">
                 <label for="last_name">التلميذ</label>
                 <select class="form-control form-select" name="student_id">
-                    @foreach($student as $student)
-                    <option value="{{ $student->id }}">{{ $student->name }} {{$student->last_name}}</option>
-                    @endforeach
+                   
 
 
                 </select>
@@ -111,19 +102,7 @@
         رجوع
     </button>
 </form>
-@else
-<center>
-    <td colspan="5" class="text-center">
-        لا يوجد طلاب <a href="{{route('students.create')}}" class="btn btn-primary">
-            <i class="fas fa-plus"></i>
-            اضافة طالب
-        </a>
-    </td>
 
-</center>
-
-
-@endif
 
 
 

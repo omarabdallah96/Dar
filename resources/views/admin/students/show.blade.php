@@ -2,7 +2,21 @@
 @section('title')
 الطالب {{{$student->name}}}
 @endsection
-
+<style>
+     .user_name {
+        display: inline-block;
+        background-color: #5cb85c;
+        padding: 0.35em 0.65em;
+        font-size: .75em;
+        font-weight: 700;
+        line-height: 1;
+        color: #fff;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        border-radius: 0.25rem;
+    }
+</style>
 @section('content')
 <!-- details of student -->
 <div class="container">
@@ -40,8 +54,11 @@
                                     اسم المعلم
                                     <br>
 
-                                    {{{$users->name}}}{{$users->last_name}}
                                 </p>
+                                <span class="user_name">
+                                    {{{$users->name}}}{{$users->last_name}}
+
+                                </span>
 
                             </div>
                         </div>

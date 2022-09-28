@@ -51,7 +51,7 @@ class RevisionController extends Controller
         $from = $request->input('from');
         $to = $request->input('to');
         if ($from < 1 || $to < 1 || $from > $to) {
-            return redirect()->back()->with('error', 'Please enter a positive number');
+            return redirect()->back()->with('error', 'الرجاء التأكد من رقم الايات');
         }
         $data = $request->capture([
             'student_id' => 'required|integer',

@@ -22,7 +22,9 @@
 @endsection
 
 @section('content')
+
 <div class="container mb-5">
+
     <div class="row">
         <div class="col-md-8">
             <span class="title">
@@ -31,7 +33,14 @@
         </div>
     </div>
 </div>
+@if (session('error'))
+<div class="alert alert-danger" role="alert">
 
+    {{session('error')}}
+
+</div>
+
+@endif
 <form action="{{route('revisions.store')}}" method="POST">
     @csrf
     <!-- 2 fields per row -->
@@ -116,4 +125,3 @@
 
 
 @endsection
-

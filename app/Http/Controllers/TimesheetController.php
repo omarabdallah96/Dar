@@ -53,7 +53,9 @@ class TimesheetController extends Controller
                     'students.name as student_name',
                     'students.last_name as student_last_name',
                     'timesheets.created_at as created_at',
-                    'timesheets.updated_at as updated_at'
+                    'timesheets.updated_at as updated_at',
+                    'timesheets.id as timesheet_id'
+
                 )
                 ->orderBy('time_day')
 
@@ -178,9 +180,15 @@ class TimesheetController extends Controller
      * @param  \App\Models\Timesheet  $timesheet
      * @return \Illuminate\Http\Response
      */
-    public function edit(Timesheet $timesheet)
+    public function edit(Request $request, $id)
     {
         //
+        $timesheet = Timesheet::findOrFail($id);
+        if ($timesheet->user_id != auth()->user()->id) {
+            return redirect()->to(route('time.index'))->with('error', 'You are not allowed to edit this timesheet.');
+        }
+
+        return view('admin.timesheets.edit', compact('timesheet'));
     }
 
     /**
@@ -220,12 +228,14 @@ class TimesheetController extends Controller
                 ->where('timesheets.is_active', true)
                 ->where('students.active', '=', 1)
                 ->select(
+
                     'day_name as day_name',
                     'time_day as time_day',
                     'students.name as student_name',
                     'students.last_name as student_last_name',
                     'timesheets.created_at as created_at',
-                    'timesheets.updated_at as updated_at'
+                    'timesheets.updated_at as updated_at',
+                    'timesheets.id as timesheet_id'
                 )
                 ->orderBy('time_day')
 

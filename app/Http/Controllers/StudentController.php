@@ -6,6 +6,7 @@ use App\Models\Revision;
 use App\Models\Student;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\Timesheet;
 
 class StudentController extends Controller
 {
@@ -162,6 +163,12 @@ class StudentController extends Controller
             return redirect('/home');
         }
         //remove token from request
+
+        if ($request->active == 0) {
+            //remove all timesheets of this student
+            $timesheet = Timesheet::where('student_id', $student->id);
+            $timesheet->delete();
+        }
 
         $student->update($request->except('_token'));
 

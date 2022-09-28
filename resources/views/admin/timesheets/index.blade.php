@@ -23,6 +23,10 @@
             display: none !important;
         }
     }
+
+    span {
+        cursor: pointer;
+    }
 </style>
 @section('title')
 @if(auth()->user()->group== 1)
@@ -33,17 +37,34 @@
 @endsection
 
 @section('content')
+
+@if (session('error'))
+<div class="alert alert-danger" role="alert">
+
+    {{session('error')}}
+
+</div>
+
+@endif
 @if(count($timesheets) < 1 ) <a href="{{route('time.create')}}" class="btn btn-primary  mb-3 ml-3 hidden-print">
     اضافة سجل
     <i class="fa fa-plus"></i>
     </a>
     @else
 
-    <a href="{{route('time.create')}}" class="btn btn-primary  mb-3 ml-3 hidden-print">
-        اضافة سجل
-        <i class="fa fa-plus"></i>
+    @if(auth()->user()->group== 1)
+
+    <a href="{{route('users.index')}}" class="btn btn-primary  mb-3 ml-3 hidden-print">
+        الرجوع
+        <i class="fa fa-back"></i>
     </a>
 
+    @else
+    <a href="{{route('time.create')}}" class="btn btn-primary  mb-3 ml-3 hidden-print">
+        اضافة سجل
+        <i class="fa fa-backward"></i>
+    </a>
+    @endif
     <h6>
         السجل الأسبوعي الخاص ب: {{$user->name}} {{$user->last_name}}
     </h6>
@@ -76,7 +97,7 @@
             @foreach($timesheets as $timesheet)
 
             @if($timesheet->time_day == $date && $timesheet->day_name== 1)
-            <span class="timesheet">
+            <span class="timesheet" onclick="edit('{{$timesheet->timesheet_id}}')">
                 {{$timesheet->student_name}} {{$timesheet->student_last_name}}
 
             </span>
@@ -105,8 +126,10 @@
             @foreach($timesheets as $timesheet)
 
             @if($timesheet->time_day == $date && $timesheet->day_name== 2)
-            {{$timesheet->student_name}} {{$timesheet->student_last_name}}
+            <span class="timesheet" onclick="edit('{{$timesheet->timesheet_id}}')">
+                {{$timesheet->student_name}} {{$timesheet->student_last_name}}
 
+            </span>
 
             @endif
 
@@ -126,8 +149,10 @@
             @foreach($timesheets as $timesheet)
 
             @if($timesheet->time_day == $date && $timesheet->day_name== 3)
-            {{$timesheet->student_name}} {{$timesheet->student_last_name}}
+            <span class="timesheet" onclick="edit('{{$timesheet->timesheet_id}}')">
+                {{$timesheet->student_name}} {{$timesheet->student_last_name}}
 
+            </span>
 
             @endif
 
@@ -147,8 +172,10 @@
             @foreach($timesheets as $timesheet)
 
             @if($timesheet->time_day == $date && $timesheet->day_name== 4)
-            {{$timesheet->student_name}} {{$timesheet->student_last_name}}
+            <span class="timesheet" onclick="edit('{{$timesheet->timesheet_id}}')">
+                {{$timesheet->student_name}} {{$timesheet->student_last_name}}
 
+            </span>
 
             @endif
 
@@ -168,8 +195,10 @@
             @foreach($timesheets as $timesheet)
 
             @if($timesheet->time_day == $date && $timesheet->day_name== 5)
-            {{$timesheet->student_name}} {{$timesheet->student_last_name}}
+            <span class="timesheet" onclick="edit('{{$timesheet->timesheet_id}}')">
+                {{$timesheet->student_name}} {{$timesheet->student_last_name}}
 
+            </span>
 
             @endif
 
@@ -190,8 +219,9 @@
 
             @if($timesheet->time_day == $date && $timesheet->day_name== 6)
 
-            <span>
+            <span class="timesheet" onclick="edit('{{$timesheet->timesheet_id}}')">
                 {{$timesheet->student_name}} {{$timesheet->student_last_name}}
+
             </span>
 
 
@@ -208,5 +238,14 @@
     @endif
 
 
+
+    @endsection
+    @section('scripts')
+    <script>
+        function edit(id) {
+            location.href = `{{url("/time")}}/${id}`
+
+        }
+    </script>
 
     @endsection
