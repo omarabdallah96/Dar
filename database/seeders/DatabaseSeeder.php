@@ -19,10 +19,11 @@ class DatabaseSeeder extends Seeder
         //create admin user
         $user = \App\Models\User::create([
             'name' => 'Admin',
-            
+
             'email' => 'admin@admin.com',
             'password' => bcrypt('Alfa512#'),
             'group' => 1,
+            'is_super_admin' => true,
 
         ]);
     }

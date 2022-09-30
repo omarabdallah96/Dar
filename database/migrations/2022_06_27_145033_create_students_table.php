@@ -26,6 +26,7 @@ class CreateStudentsTable extends Migration
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->string('sex');
+            $table->string('center_id')->default(1);
             $table->boolean('active')->default(true);
             $table->unsignedBigInteger('user_id');
             //relaciones

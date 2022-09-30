@@ -76,6 +76,7 @@ class StudentController extends Controller
         $student->last_name = $request->last_name;
         $student->phone = $request->phone;
         $student->sex = $request->sex;
+        $student->center_id = auth()->user()->center_id;
         $student->address = $request->address;
         $student->user_id = $user_id;
 

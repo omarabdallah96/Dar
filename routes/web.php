@@ -69,3 +69,11 @@ Route::get('/logout', function () {
     Auth::logout();
     return redirect('/home');
 });
+
+
+Route::group(['middleware' => 'isSuperAdmin'], function () {
+    Route::get('/superadmin/users', [App\Http\Controllers\SuperAdmin::class, 'index'])->name('superadmin.index');
+    Route::post('/superadmin/users', [App\Http\Controllers\SuperAdmin::class, 'sotre'])->name('superadmin.index');
+    Route::get('/superadmin/users', [App\Http\Controllers\CenterController::class, 'index'])->name('superadmin.index');
+    Route::post('/superadmin/users', [App\Http\Controllers\CenterController::class, 'sotre'])->name('superadmin.index');
+});

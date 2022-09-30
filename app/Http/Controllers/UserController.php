@@ -24,7 +24,7 @@ class UserController extends Controller
     {
         //return all users
         if ($this->isAdmin()) {
-            $users = User::all();
+            $users = User::where('center_id', auth()->user()->center_id)->get();
 
             return view('admin.users.index', compact('users'));
         }
