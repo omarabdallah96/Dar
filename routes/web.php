@@ -13,7 +13,7 @@ Auth::routes(
 
 //auth routes group middleware
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['auth', 'isUser']], function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/students', [App\Http\Controllers\StudentController::class, 'index'])->name('students.index');
     Route::get('/students/create', [App\Http\Controllers\StudentController::class, 'create'])->name('students.create');
@@ -72,8 +72,12 @@ Route::get('/logout', function () {
 
 
 Route::group(['middleware' => 'isSuperAdmin'], function () {
+    Route::get('/superadmin/home', [App\Http\Controllers\SuperAdmin::class, 'home'])->name('superadmin.home');
+
     Route::get('/superadmin/users', [App\Http\Controllers\SuperAdmin::class, 'index'])->name('superadmin.index');
-    Route::post('/superadmin/users', [App\Http\Controllers\SuperAdmin::class, 'sotre'])->name('superadmin.index');
-    Route::get('/superadmin/users', [App\Http\Controllers\CenterController::class, 'index'])->name('superadmin.index');
-    Route::post('/superadmin/users', [App\Http\Controllers\CenterController::class, 'sotre'])->name('superadmin.index');
+    Route::get('/superadmin/users/create', [App\Http\Controllers\SuperAdmin::class, 'create'])->name('superadmin.create');
+
+    Route::post('/superadmin/users', [App\Http\Controllers\SuperAdmin::class, 'sotre'])->name('superadmin.store');
+    Route::get('/superadmin/center', [App\Http\Controllers\CenterController::class, 'index'])->name('superadmin.center.index');
+    Route::post('/superadmin/center', [App\Http\Controllers\CenterController::class, 'sotre'])->name('superadmin.center.store');
 });

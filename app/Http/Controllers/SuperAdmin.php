@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Center;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -15,7 +17,8 @@ class SuperAdmin extends Controller
     public function index()
     {
         //
-        $users  = User::where('group', 1)->get();
+        $users  = User::all();
+
 
         return view('admin.superadmin.index', compact('users'));
     }
@@ -84,5 +87,14 @@ class SuperAdmin extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function home()
+    {
+        $users = User::count();
+        $student = Student::count();
+        $centers = Center::count();
+
+        return view('admin.superadmin.home', compact('users', 'student', 'centers',));
     }
 }

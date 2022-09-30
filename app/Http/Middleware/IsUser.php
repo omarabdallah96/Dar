@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Auth;
 
-class superAdmin
+class IsUser
 {
     /**
      * Handle an incoming request.
@@ -17,10 +17,9 @@ class superAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user() &&  Auth::user()->is_super_admin == 1) {
+        if (Auth::user() &&  Auth::user()->is_super_admin == 0) {
             return $next($request);
         }
-
-        return abort(404);
+        return redirect()->to(route('superadmin.home'));
     }
 }

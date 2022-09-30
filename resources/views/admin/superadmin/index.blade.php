@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.super')
 <style>
     table {
         direction: rtl;
@@ -11,7 +11,7 @@
 
 @section('content')
 @if(count($users) > 0)
-<a href="{{route('users.create')}}" class="btn btn-primary  mb-3 ml-3">إضافة مستخدم
+<a href="{{route('superadmin.create')}}" class="btn btn-primary  mb-3 ml-3">إضافة مستخدم
     <i class="fa fa-plus"></i>
 </a>
 @endif
@@ -65,7 +65,7 @@
         @empty
         <tr>
             <td colspan="5" class="text-center">
-                لا يوجد طلاب <a href="{{route('users.create')}}" class="btn btn-primary">
+                لا يوجد طلاب <a href="{{route('superadmin.create')}}" class="btn btn-primary">
                     <i class="fas fa-plus"></i>
                     اضافة طالب
                 </a>
